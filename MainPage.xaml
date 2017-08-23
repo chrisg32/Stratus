@@ -26,23 +26,32 @@
             <Button Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding CurrentTab.BackCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
                 <FontIcon Glyph="&#xE7EA;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
-            <ListView Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                      ScrollViewer.HorizontalScrollMode="Enabled"
-                      ScrollViewer.VerticalScrollMode="Disabled"
-                      ItemsSource="{Binding Tabs}"
-                      SelectedItem="{Binding CurrentTab, Mode=TwoWay}"
-                      HorizontalAlignment="Left">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Background="Transparent" Orientation="Horizontal" Padding="0" Margin="0"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <views:TabControl DataContext="{Binding}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Grid Grid.Column="1" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                           ScrollViewer.HorizontalScrollMode="Enabled"
+                           ScrollViewer.VerticalScrollMode="Disabled"
+                           ItemsSource="{Binding Tabs}"
+                           SelectedItem="{Binding CurrentTab, Mode=TwoWay}"
+                           HorizontalAlignment="Left">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Background="Transparent" Orientation="Horizontal" Padding="0" Margin="0"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <views:TabControl DataContext="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Grid.Column="1" x:Name="NewTabButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                    <FontIcon Glyph="&#xE109;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                </Button>
+            </Grid>
             <Button Grid.Column="2" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch">
                 <FontIcon Glyph="&#xE191;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
