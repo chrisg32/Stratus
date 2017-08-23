@@ -27,7 +27,7 @@ namespace Stratus
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
             //Window.Current.SetTitleBar is used to identify which control will handle user inputs (Grab and move)
-            Window.Current.SetTitleBar(SystemButtonGutter);
+            Window.Current.SetTitleBar(WindowGrip);
 
             var view = ApplicationView.GetForCurrentView();
 

@@ -30,6 +30,9 @@
                 <FontIcon Glyph="&#xE7EA;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
             <!--#endregion Back Button-->
+            <!--This grid shares the same column as the tab list and handles the system drag
+            event for manupulating the window in empty tab space-->
+            <Grid Grid.Column="1" Background="Transparent" x:Name="WindowGrip"/>
             <!--#region Tab Container-->
             <Grid Grid.Column="1" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
@@ -68,7 +71,7 @@
             <!--#endregion Tab Container-->
             <!--#region Magic Button-->
             <Button Grid.Column="2" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch">
-                <FontIcon Glyph="&#xE191;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
             <!--#endregion Magic Button-->
             <!--#region System Reserved Area-->
