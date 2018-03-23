@@ -12,32 +12,10 @@ namespace Stratus.ViewModels
 {
     class WindowViewModel : ViewModelBase
     {
-        private TabViewModel _currentTab;
-        public ObservableCollection<TabViewModel> Tabs { get; }
 
-        public TabViewModel CurrentTab
-        {
-            get => _currentTab;
-            set => SetProperty(ref _currentTab, value);
-        }
+        public ICommand FullScreenCommand { get; }
+        public ICommand PipCommand { get; }
 
-        public ICommand NewTabCommand { get; }
-
-        public WindowViewModel()
-        {
-            Tabs = new ObservableCollection<TabViewModel>();
-            NewTabCommand = new DelegateCommand(ExecuteNewTab);
-
-            ExecuteNewTab();
-            CurrentTab = Tabs.First();
-        }
-
-        private void ExecuteNewTab()
-        {
-            Tabs.Add(new TabViewModel
-            {
-                Title = Faker.Company.Bullshit()
-            });
-        }
+       
     }
 }
