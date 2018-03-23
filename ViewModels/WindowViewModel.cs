@@ -22,10 +22,6 @@ namespace Stratus.ViewModels
 
         #region Commands
 
-        public ICommand FullScreenCommand { get; }
-        public ICommand PipCommand { get; }
-
-
         public DelegateCommand<string> NavigateCommand { get; }
         public DelegateCommand BackCommand { get; }
         public DelegateCommand ForwardCommand { get; }

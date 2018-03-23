@@ -99,5 +99,9 @@ namespace Stratus
         }
 
 
+        private void Pip_Click(object sender, RoutedEventArgs e)
+        {
+            DoPictureInPicture();
+        }
     }
 }
