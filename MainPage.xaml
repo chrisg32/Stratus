@@ -24,10 +24,10 @@
                 <!--System Reserved Area-->
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding BackCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
+            <Button Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding BackCommand}" util:Ext.Cursor="Hand">
                 <FontIcon Glyph="&#xE0A6;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
-            <Button Grid.Column="1" VerticalAlignment="Stretch" Command="{Binding ForwardCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
+            <Button Grid.Column="1" VerticalAlignment="Stretch" Command="{Binding ForwardCommand}" util:Ext.Cursor="Hand">
                 <FontIcon Glyph="&#xE0AB;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
             <Grid Grid.Column="2" HorizontalAlignment="Stretch">
@@ -38,20 +38,20 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="AddressBar" IsSpellCheckEnabled="False" KeyDown="AddressBar_KeyDown" Text="{Binding Address}"/>
-                <Button Grid.Column="1" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding NavigateCommand, ConverterParameter={Binding Text, ElementName=AddressBar}}">
+                <Button Grid.Column="1" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding NavigateCommand, ConverterParameter={Binding Text, ElementName=AddressBar}}">
                     <FontIcon Glyph="&#xE751;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 </Button>
             </Grid>
-            <Button Grid.Column="3" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" Click="MagicButton_Click">
+            <Button Grid.Column="3" x:Name="MagicButton" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" Click="MagicButton_Click">
                 <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="PIP Mode" Command="{Binding PipCommand}" >
+                        <MenuFlyoutItem Text="PIP Mode" Command="{Binding PipCommand}">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE173;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Full Screen" Command="{Binding FullScreenCommand}" >
+                        <MenuFlyoutItem Text="Full Screen" Command="{Binding FullScreenCommand}">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE740;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                             </MenuFlyoutItem.Icon>

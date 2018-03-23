@@ -14,12 +14,16 @@
                       TintColor="{StaticResource UiBackgroundColor}"
                       TintOpacity="0.4"
                       FallbackColor="{StaticResource UiBackgroundColor}"/>
+        <AcrylicBrush x:Key="FlyoutBackground" BackgroundSource="Backdrop"
+                      TintColor="{StaticResource UiBackgroundColor}"
+                      TintOpacity="0.6"
+                      FallbackColor="{StaticResource UiBackgroundColor}"/>
         <SolidColorBrush x:Key="UiAccent" Color="{StaticResource UiAccentColor}"/>
         <SolidColorBrush x:Key="UiMouseOver" Color="{StaticResource UiMouseOverColor}"/>
         <SolidColorBrush x:Key="UiForeground" Color="{StaticResource UiForegroundColor}"/>
         <SolidColorBrush x:Key="UiClicked" Color="{StaticResource UiClickedColor}"/>
         <SolidColorBrush x:Key="UiDisabled" Color="{StaticResource UiDisabledColor}"/>
-        <Style TargetType="Button" x:Key="CustomButtonStyle">
+        <Style TargetType="Button">
             <Setter Property="Background" Value="{StaticResource UiBackground}" />
             <Setter Property="Foreground" Value="{StaticResource UiForeground}"/>
             <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
@@ -111,6 +115,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="MenuFlyoutPresenter">
+            <Setter Property="Background" Value="{StaticResource FlyoutBackground}"/>
+        </Style>
+        <!--See https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.MenuFlyoutItem for built in styles used -->
+        <SolidColorBrush x:Key="MenuFlyoutItemForeground" Color="{StaticResource UiForegroundColor}"/>
+        <SolidColorBrush x:Key="MenuFlyoutItemForegroundPointerOver" Color="{StaticResource UiForegroundColor}"/>
     </Application.Resources>
 </Application>
+
+
 
