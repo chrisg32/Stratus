@@ -96,7 +96,7 @@ namespace Stratus
 
         private void WebView_ContentLoading(WebView sender, WebViewContentLoadingEventArgs args)
         {
-            _viewModel.Address = args.Uri.ToString();
+            _viewModel.OnNavigate(args.Uri);
         }
 
 
