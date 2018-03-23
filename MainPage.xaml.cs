@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Stratus.ViewModels;
 using Windows.UI.Xaml.Controls.Primitives;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Stratus
 {
@@ -17,6 +18,7 @@ namespace Stratus
     public sealed partial class MainPage
     {
         private readonly WindowViewModel _viewModel;
+        private bool _isFullScreen;
 
         public MainPage()
         {
@@ -56,24 +58,25 @@ namespace Stratus
             view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             view.TitleBar.InactiveForegroundColor = Colors.Transparent;
 
-            
+            view.VisibleBoundsChanged += View_VisibleBoundsChanged;
         }
+
+        private void View_VisibleBoundsChanged(ApplicationView sender, object args)
+        {
+            if (_isFullScreen && !sender.IsFullScreenMode)
+            {
+                _isFullScreen = false;
+                ShowTitleBar();
+            }
+        }
+
+        #region Event Handlers
 
         private void CoreTitleBarOnLayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             TitleBar.Height = sender.Height;
             SystemButtonGutter.Width = sender.SystemOverlayRightInset;
             MagicButton.Width = sender.SystemOverlayRightInset / 4;
-        }
-
-        private async void DoPictureInPicture()
-        {
-            if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
-            {
-                ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-                compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
-                var result = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
-            }
         }
 
         private void MagicButton_Click(object sender, RoutedEventArgs e)
@@ -92,7 +95,6 @@ namespace Stratus
             }
         }
 
-
         private void WebView_ContentLoading(WebView sender, WebViewContentLoadingEventArgs args)
         {
             _viewModel.OnNavigate(args.Uri);
@@ -101,7 +103,50 @@ namespace Stratus
 
         private void Pip_Click(object sender, RoutedEventArgs e)
         {
-            DoPictureInPicture();
+            TogglePictureInPicture();
         }
+
+        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            EnterFullScreen();
+        }
+
+        #endregion
+
+        #region View Modes
+
+        private async void TogglePictureInPicture()
+        {
+            if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
+            {
+                ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
+                compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
+                var result = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+            }
+        }
+
+        private void EnterFullScreen()
+        {
+            var view = ApplicationView.GetForCurrentView();
+            if (view.TryEnterFullScreenMode())
+            {
+                _isFullScreen = true;
+                HideTitleBar();
+            }
+        }
+
+        private void HideTitleBar()
+        {
+            TitleBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowTitleBar()
+        {
+            TitleBar.Visibility = Visibility.Visible;
+        }
+
+        #endregion
+
+
     }
 }

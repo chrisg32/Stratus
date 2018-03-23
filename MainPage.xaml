@@ -46,7 +46,7 @@
                 <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Top Most" Click="Pip_Click">
+                        <MenuFlyoutItem Text="Top Most">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE11C;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                             </MenuFlyoutItem.Icon>
@@ -56,7 +56,7 @@
                                 <FontIcon Glyph="&#xE173;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Full Screen" >
+                        <MenuFlyoutItem Text="Full Screen" Click="FullScreen_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE740;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                             </MenuFlyoutItem.Icon>
