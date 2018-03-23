@@ -42,16 +42,32 @@
                     <FontIcon Glyph="&#xE751;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 </Button>
             </Grid>
-            <Button Grid.Column="3" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch">
+            <Button Grid.Column="3" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" Click="MagicButton_Click">
                 <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="PIP Mode" Command="{Binding PipCommand}" >
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE173;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Full Screen" Command="{Binding FullScreenCommand}" >
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE740;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Chromeless" Command="{Binding PipCommand}" >
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE727;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
             </Button>
             <Grid Grid.Column="4" x:Name="SystemButtonGutter" HorizontalAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel>
-                <Button>Close Tab</Button>
-                <TextBlock Text="{Binding CurrentTab.Title}"/>
-            </StackPanel>
+            <WebView x:Name="WebView" Source="https://en.wikipedia.org/wiki/Stratus_cloud"/>
         </Grid>
     </Grid>
 </Page>

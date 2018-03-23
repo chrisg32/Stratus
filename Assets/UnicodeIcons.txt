@@ -1,7 +1,8 @@
-﻿Maximize E740
+﻿Fullscreen E740
 Back E0A6
 Forward E0AB
 PIP E173 E158
 Settings E115
 Refresh E149
 Enter E751
+Chromeless E727

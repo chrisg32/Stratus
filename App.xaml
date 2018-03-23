@@ -9,7 +9,7 @@
         <Color x:Key="UiAccentColor">#7AC0FF</Color>
         <Color x:Key="UiMouseOverColor">#3E3E40</Color>
         <Color x:Key="UiForegroundColor">#FFFFFF</Color>
-        <Color x:Key="UiClickedColor">#444444</Color>
+        <Color x:Key="UiClickedColor">#00B2E4</Color>
         <Color x:Key="UiDisabledColor">#4E4E50</Color>
         <SolidColorBrush x:Key="UiBackground" Color="{StaticResource UiBackgroundColor}"/>
         <SolidColorBrush x:Key="UiAccent" Color="{StaticResource UiAccentColor}"/>

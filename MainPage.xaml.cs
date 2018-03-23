@@ -6,6 +6,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Stratus.ViewModels;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Stratus
 {
@@ -37,10 +38,12 @@ namespace Stratus
             view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             view.TitleBar.ButtonForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonHoverBackgroundColor = Color.FromArgb(100, 0, 0, 0);
+            var hoverColor = (Color)Application.Current.Resources["UiMouseOverColor"];
+            view.TitleBar.ButtonHoverBackgroundColor = hoverColor;
             view.TitleBar.ButtonHoverForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonPressedBackgroundColor = Color.FromArgb(255, 0, 178, 228);
+            var pressedColor = (Color)Application.Current.Resources["UiClickedColor"];
+            view.TitleBar.ButtonPressedBackgroundColor = pressedColor;
             view.TitleBar.ButtonPressedForegroundColor = Colors.White;
 
             view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
@@ -70,6 +73,9 @@ namespace Stratus
             }
         }
 
- 
+        private void MagicButton_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        }
     }
 }
