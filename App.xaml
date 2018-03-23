@@ -2,7 +2,6 @@
     x:Class="Stratus.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:util="using:Stratus.Util"
     RequestedTheme="Light">
     <Application.Resources>
         <Color x:Key="UiBackgroundColor">#383838</Color>
@@ -11,7 +10,10 @@
         <Color x:Key="UiForegroundColor">#FFFFFF</Color>
         <Color x:Key="UiClickedColor">#00B2E4</Color>
         <Color x:Key="UiDisabledColor">#4E4E50</Color>
-        <SolidColorBrush x:Key="UiBackground" Color="{StaticResource UiBackgroundColor}"/>
+        <AcrylicBrush x:Key="UiBackground" BackgroundSource="HostBackdrop"
+                      TintColor="{StaticResource UiBackgroundColor}"
+                      TintOpacity="0.4"
+                      FallbackColor="{StaticResource UiBackgroundColor}"/>
         <SolidColorBrush x:Key="UiAccent" Color="{StaticResource UiAccentColor}"/>
         <SolidColorBrush x:Key="UiMouseOver" Color="{StaticResource UiMouseOverColor}"/>
         <SolidColorBrush x:Key="UiForeground" Color="{StaticResource UiForegroundColor}"/>

@@ -56,8 +56,7 @@ namespace Stratus
             view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
             view.TitleBar.InactiveForegroundColor = Colors.Transparent;
 
-
-            //Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 1);
+            
         }
 
         private void CoreTitleBarOnLayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
