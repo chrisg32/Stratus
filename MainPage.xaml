@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:Stratus.Views"
     xmlns:util="using:Stratus.Util"
     mc:Ignorable="d" BorderThickness="0">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -12,11 +11,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <!--#region Titlebar-->
         <Grid Background="{StaticResource UiBackground}" Grid.Row="0" x:Name="TitleBar">
             <Grid.ColumnDefinitions>
                 <!--Back Button-->
+                <ColumnDefinition Width="Auto"/>
+                <!--Forward Button-->
                 <ColumnDefinition Width="Auto"/>
                 <!--Address Bar-->
                 <ColumnDefinition Width="*"/>
@@ -25,40 +24,29 @@
                 <!--System Reserved Area-->
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <!--#region Back Button-->
-            <Button Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding CurrentTab.BackCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
-                <FontIcon Glyph="&#xE7EA;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+            <Button Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding BackCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
+                <FontIcon Glyph="&#xE0A6;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
-            <!--#endregion Back Button-->
-            <!--This grid shares the same column as the tab list and handles the system drag
-            event for manupulating the window in empty tab space-->
-            <Grid Grid.Column="1" Background="Transparent" x:Name="WindowGrip"/>
-            <!--#region Tab Container-->
-            <Grid Grid.Column="1" HorizontalAlignment="Left">
+            <Button Grid.Column="1" VerticalAlignment="Stretch" Command="{Binding ForwardCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand">
+                <FontIcon Glyph="&#xE0AB;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+            </Button>
+            <Grid Grid.Column="2" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <!--Tab List View-->
                     <ColumnDefinition Width="*"/>
                     <!--New Tab Button -->
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <!--#region New Tab Button-->
+                <TextBox/>
                 <Button Grid.Column="1" Command="{Binding NewTabCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-                    <FontIcon Glyph="&#xE109;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                    <FontIcon Glyph="&#xE751;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 </Button>
-                <!--#endregion New Tab Button-->
             </Grid>
-            <!--#endregion Tab Container-->
-            <!--#region Magic Button-->
-            <Button Grid.Column="2" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch">
+            <Button Grid.Column="3" x:Name="MagicButton" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch">
                 <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
             </Button>
-            <!--#endregion Magic Button-->
-            <!--#region System Reserved Area-->
-            <Grid Grid.Column="3" x:Name="SystemButtonGutter" Background="Transparent" HorizontalAlignment="Stretch"/>
-            <!--#endregion System Reserved Area-->
+            <Grid Grid.Column="4" x:Name="SystemButtonGutter" HorizontalAlignment="Stretch"/>
         </Grid>
-        <!--#endregion -->
-
         <Grid Grid.Row="1">
             <StackPanel>
                 <Button>Close Tab</Button>

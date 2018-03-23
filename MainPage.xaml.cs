@@ -27,27 +27,27 @@ namespace Stratus
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
             //Window.Current.SetTitleBar is used to identify which control will handle user inputs (Grab and move)
-            Window.Current.SetTitleBar(WindowGrip);
+            Window.Current.SetTitleBar(SystemButtonGutter);
 
             var view = ApplicationView.GetForCurrentView();
 
-            view.TitleBar.BackgroundColor = Colors.DarkGreen;
+            view.TitleBar.BackgroundColor = Colors.Transparent;
             view.TitleBar.ForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonBackgroundColor = Colors.DarkGreen;
+            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             view.TitleBar.ButtonForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonHoverBackgroundColor = Colors.Green;
+            view.TitleBar.ButtonHoverBackgroundColor = Color.FromArgb(100, 0, 0, 0);
             view.TitleBar.ButtonHoverForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonPressedBackgroundColor = Color.FromArgb(255, 0, 120, 0);
+            view.TitleBar.ButtonPressedBackgroundColor = Color.FromArgb(255, 0, 178, 228);
             view.TitleBar.ButtonPressedForegroundColor = Colors.White;
 
-            view.TitleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
-            view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            view.TitleBar.ButtonInactiveForegroundColor = Colors.Transparent;
 
-            view.TitleBar.InactiveBackgroundColor = Colors.DarkGreen;
-            view.TitleBar.InactiveForegroundColor = Colors.Gray;
+            view.TitleBar.InactiveBackgroundColor = Colors.Transparent;
+            view.TitleBar.InactiveForegroundColor = Colors.Transparent;
 
 
             //Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 1);
