@@ -9,6 +9,7 @@ using Stratus.ViewModels;
 using Windows.UI.Xaml.Controls.Primitives;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.StartScreen;
 
 namespace Stratus
 {
@@ -59,6 +60,28 @@ namespace Stratus
             view.TitleBar.InactiveForegroundColor = Colors.Transparent;
 
             view.VisibleBoundsChanged += View_VisibleBoundsChanged;
+
+            CreateJumpList();
+        }
+
+        private async void CreateJumpList()
+        {
+            if (!JumpList.IsSupported()) return;
+            const string viewModesGroup = "ViewModes";
+
+            var jl = await JumpList.LoadCurrentAsync();
+
+            jl.Items.Clear();
+
+            var pip = JumpListItem.CreateWithArguments("pip", "Pip");
+            pip.Description = "Toggle PIP mode.";
+            pip.GroupName = viewModesGroup;
+            //TODO create assets for icons and set logo url
+            //pip.Logo = new Uri("ms-appx:///images/your-images.png");
+
+            
+            jl.Items.Add(pip);
+            await jl.SaveAsync();
         }
 
         private void View_VisibleBoundsChanged(ApplicationView sender, object args)
@@ -122,6 +145,10 @@ namespace Stratus
                 ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
                 compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
                 var result = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+                if (result)
+                {
+                    HideTitleBar();
+                }
             }
         }
 
