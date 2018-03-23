@@ -6,12 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:util="using:Stratus.Util"
     mc:Ignorable="d" BorderThickness="0">
-    <Grid Background="{StaticResource UiClicked}">
+    <Grid Background="{StaticResource UiBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource UiBackground}" Grid.Row="0" x:Name="TitleBar">
+        <Grid Background="Transparent" Grid.Row="0" x:Name="TitleBar">
             <Grid.ColumnDefinitions>
                 <!--Back Button-->
                 <ColumnDefinition Width="Auto"/>
