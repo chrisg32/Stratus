@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Stratus.ViewModels;
 using Windows.UI.Xaml.Controls.Primitives;
+using System.Runtime.CompilerServices;
 
 namespace Stratus
 {
@@ -15,11 +16,14 @@ namespace Stratus
     /// </summary>
     public sealed partial class MainPage
     {
+        private readonly WindowViewModel _viewModel;
+
         public MainPage()
         {
             InitializeComponent();
 
-            DataContext = new WindowViewModel();
+            _viewModel = new WindowViewModel();
+            DataContext = _viewModel;
 
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.LayoutMetricsChanged += CoreTitleBarOnLayoutMetricsChanged;
@@ -77,5 +81,24 @@ namespace Stratus
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
+
+        private void AddressBar_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                if (_viewModel.NavigateCommand.CanExecute(null))
+                {
+                    _viewModel.NavigateCommand.Execute(AddressBar.Text);
+                }
+            }
+        }
+
+
+        private void WebView_ContentLoading(WebView sender, WebViewContentLoadingEventArgs args)
+        {
+            _viewModel.Address = args.Uri.ToString();
+        }
+
+
     }
 }

@@ -37,8 +37,8 @@
                     <!--New Tab Button -->
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox/>
-                <Button Grid.Column="1" Command="{Binding NewTabCommand}" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                <TextBox x:Name="AddressBar" IsSpellCheckEnabled="False" KeyDown="AddressBar_KeyDown" Text="{Binding Address}"/>
+                <Button Grid.Column="1" Style="{StaticResource CustomButtonStyle}" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding NavigateCommand, ConverterParameter={Binding Text, ElementName=AddressBar}}">
                     <FontIcon Glyph="&#xE751;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 </Button>
             </Grid>
@@ -67,7 +67,8 @@
             <Grid Grid.Column="4" x:Name="SystemButtonGutter" HorizontalAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Row="1">
-            <WebView x:Name="WebView" Source="https://en.wikipedia.org/wiki/Stratus_cloud"/>
+            <WebView x:Name="WebView" Source="{Binding Source}"
+                     ContentLoading="WebView_ContentLoading"/>
         </Grid>
     </Grid>
 </Page>
