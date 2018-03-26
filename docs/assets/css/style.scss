@@ -1,0 +1,16 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header{
+    background-image: linear-gradient(180deg, #1660c2, #33CCFF);
+}
+
+.lnk {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+    text-decoration: underline;
+}
