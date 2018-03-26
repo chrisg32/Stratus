@@ -14,3 +14,57 @@
     transition: color 0.2s, background-color 0.2s, border-color 0.2s;
     text-decoration: underline;
 }
+
+.home .features {
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.8em;
+}
+
+.home .features .feature-list {
+    margin-top: 3em;
+    display: block;
+    float: left;
+}
+
+.home .features .feature-list .feature {
+    text-align: center;
+    width: 28%;
+    display: inline-block;
+    margin: 1em 2% 6em;
+    height: 200px;
+    float: left;
+}
+
+.home .features .feature-list .feature i::before {
+    background: linear-gradient(180deg, #1660c2, #33CCFF);
+        background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #33CCFF;
+}
+
+.home .features .feature-list .feature header {
+    font-weight: 700;
+    margin-bottom: 0.6em;
+}
+
+.home .features .feature-list .feature p {
+    font-weight: 400;
+    color: #777;
+    font-size: 0.9em;
+    line-height: 1.7em;
+}
+
+.home .features p {
+    font-weight: 400;
+    color: #777;
+    display: block;
+}
+
+.home .features .feature-list .feature i {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto 0.4em;
+    font-size: 3.2em;
+}
