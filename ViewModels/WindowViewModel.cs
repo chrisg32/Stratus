@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using System.Text.RegularExpressions;
@@ -27,8 +23,6 @@ namespace Stratus.ViewModels
         public DelegateCommand ForwardCommand { get; }
 
         #endregion
-
-
 
         public Uri Source
         {
@@ -90,7 +84,6 @@ namespace Stratus.ViewModels
         }
 
         #endregion
-
 
         public void OnNavigate(Uri uri)
         {

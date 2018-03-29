@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
-using Windows.UI.Core;
+using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Stratus.ViewModels;
 using Windows.UI.Xaml.Controls.Primitives;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
+using Autofac;
+using Stratus.Extensions;
+using Stratus.ViewModels;
 
-namespace Stratus
+namespace Stratus.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -20,12 +23,15 @@ namespace Stratus
     {
         private readonly WindowViewModel _viewModel;
         private bool _isFullScreen;
+        private Document _document;
+        private IList<BaseSiteHandler> _extensions;
 
         public MainPage()
         {
             InitializeComponent();
 
-            _viewModel = new WindowViewModel();
+            _viewModel = App.Container.Resolve<WindowViewModel>();
+            _extensions = App.Container.Resolve<IList<BaseSiteHandler>>();
             DataContext = _viewModel;
 
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
@@ -62,6 +68,8 @@ namespace Stratus
             view.VisibleBoundsChanged += View_VisibleBoundsChanged;
 
             CreateJumpList();
+
+            _document = new Document(_viewModel, WebView);
         }
 
         private async void CreateJumpList()
@@ -126,11 +134,15 @@ namespace Stratus
 
         private void Pip_Click(object sender, RoutedEventArgs e)
         {
+            var extension = _extensions.FirstOrDefault(ext => ext.Filter(_document.Url));
+            extension?.OnPictureInPicture(_document);
             TogglePictureInPicture();
         }
 
         private void FullScreen_Click(object sender, RoutedEventArgs e)
         {
+            var extension = _extensions.FirstOrDefault(ext => ext.Filter(_document.Url));
+            extension?.OnFullScreen(_document);
             EnterFullScreen();
         }
 
