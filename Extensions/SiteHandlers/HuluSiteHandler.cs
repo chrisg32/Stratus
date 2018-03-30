@@ -1,5 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 
 namespace Stratus.Extensions.SiteHandlers
 {
@@ -23,7 +25,11 @@ namespace Stratus.Extensions.SiteHandlers
         private async Task RedirectToPopoutVersion(Document document)
         {
             var html = await document.GetHtml();
-            var match = Regex.Match(document.Url, @"^(?:https?:\/\/)?(?:www\.)?hulu\.com\/watch\/(\d{3,})#?.*?$");
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            var nodes = doc.DocumentNode.SelectNodes("//img[contains(@class, 'thumbnail-background')]").ToList();
+            var url = nodes.First().Attributes["src"].Value;
+            var match = Regex.Match(url, @".?video\/(\d{5,})\?size");
             if (match.Success)
             {
                 var videoId = match.Groups[1].Value;
