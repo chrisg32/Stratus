@@ -89,7 +89,14 @@ namespace Stratus.Views
 
             
             jl.Items.Add(pip);
-            await jl.SaveAsync();
+            try
+            {
+                await jl.SaveAsync();
+            }
+            catch (Exception e)
+            {
+                //TODO log exception
+            }
         }
 
         private void View_VisibleBoundsChanged(ApplicationView sender, object args)
