@@ -95,10 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\BaseSiteHandler.cs" />
+    <Compile Include="Extensions\BaseSiteExtension.cs" />
     <Compile Include="Extensions\Document.cs" />
-    <Compile Include="Extensions\SiteHandlers\HuluSiteHandler.cs" />
+    <Compile Include="Extensions\SiteHandlers\HuluSiteExtension.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="ViewModels\ExtensionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -192,6 +193,9 @@
   <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="CG.Commons">
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>

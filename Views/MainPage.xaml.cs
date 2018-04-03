@@ -25,14 +25,14 @@ namespace Stratus.Views
         private readonly MainViewModel _viewModel;
         private bool _isFullScreen;
         private readonly Document _document;
-        private readonly IList<BaseSiteHandler> _extensions;
+        private readonly IList<BaseSiteExtension> _extensions;
 
         public MainPage()
         {
             InitializeComponent();
 
             _viewModel = App.Container.Resolve<MainViewModel>();
-            _extensions = App.Container.Resolve<IList<BaseSiteHandler>>();
+            _extensions = App.Container.Resolve<IList<BaseSiteExtension>>();
             SettingsDialog.DataContext = App.Container.Resolve<SettingsViewModel>();
             DataContext = _viewModel;
 

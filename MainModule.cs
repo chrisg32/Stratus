@@ -11,8 +11,8 @@ namespace Stratus
             
             //register site handler extensions
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => t.Namespace == "Stratus.Extensions.SiteHandlers" && t.BaseType == typeof(BaseSiteHandler))
-                .As<BaseSiteHandler>();
+                .Where(t => t.Namespace == "Stratus.Extensions.SiteHandlers" && t.BaseType == typeof(BaseSiteExtension))
+                .As<BaseSiteExtension>().SingleInstance();
 
             //register view models
             builder.RegisterAssemblyTypes(assembly).Where(t => t.Namespace == "Stratus.ViewModels").AsSelf();
