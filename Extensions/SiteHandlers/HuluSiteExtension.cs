@@ -23,7 +23,8 @@ namespace Stratus.Extensions.SiteHandlers
         }
 
         public override string Name => "Hulu";
-        public override string Description => "Redirects Hulu to full screen viewer when entering certain view modes";
+        public override string Description => "Redirects Hulu to full screen viewer when entering certain view modes.";
+        public override string IconUrl => @"https://www.hulu.com/fat-favicon.ico";
 
         private async Task RedirectToPopoutVersion(Document document)
         {
