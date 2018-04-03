@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace Stratus.Extensions.SiteHandlers
+namespace Stratus.Extensions.SiteExtensions
 {
     class HuluSiteExtension : BaseSiteExtension
     {

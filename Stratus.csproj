@@ -97,7 +97,8 @@
     </Compile>
     <Compile Include="Extensions\BaseSiteExtension.cs" />
     <Compile Include="Extensions\Document.cs" />
-    <Compile Include="Extensions\SiteHandlers\HuluSiteExtension.cs" />
+    <Compile Include="Extensions\SiteExtensions\HuluSiteExtension.cs" />
+    <Compile Include="Extensions\SiteExtensions\YouTubeSiteExtension.cs" />
     <Compile Include="MainModule.cs" />
     <Compile Include="ViewModels\ExtensionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
