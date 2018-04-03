@@ -133,6 +133,10 @@
                 </ListView>
             </Border>
             <Button Margin="20" Style="{StaticResource SettingsButtonStyle}" Content="OK" Click="Ok_OnClick" util:Ext.Cursor="Hand" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <TextBlock VerticalAlignment="Center" Text="Allow collection of anonymous usage data and crash reports."/>
+                <ToggleSwitch Margin="10,0,0,0"/>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </ContentDialog>
