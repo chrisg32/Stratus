@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
-#if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-#endif
 
 namespace Stratus
 {
@@ -31,9 +29,10 @@ namespace Stratus
             builder.RegisterModule<MainModule>();
             Container = builder.Build();
 
-#if !DEBUG
             AppCenter.Start("{{APP_CENTER_ID}}", typeof(Analytics), typeof(Crashes));
-#endif
+            var region = Windows.System.UserProfile.GlobalizationPreferences.HomeGeographicRegion;
+            var geographicRegion = new Windows.Globalization.GeographicRegion(region);
+            AppCenter.SetCountryCode(geographicRegion.CodeTwoLetter);
 
         }
 

@@ -11,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Autofac;
+using Prism.Commands;
 using Stratus.Extensions;
 using Stratus.ViewModels;
 
@@ -21,17 +22,18 @@ namespace Stratus.Views
     /// </summary>
     public sealed partial class MainPage
     {
-        private readonly WindowViewModel _viewModel;
+        private readonly MainViewModel _viewModel;
         private bool _isFullScreen;
-        private Document _document;
-        private IList<BaseSiteHandler> _extensions;
+        private readonly Document _document;
+        private readonly IList<BaseSiteHandler> _extensions;
 
         public MainPage()
         {
             InitializeComponent();
 
-            _viewModel = App.Container.Resolve<WindowViewModel>();
+            _viewModel = App.Container.Resolve<MainViewModel>();
             _extensions = App.Container.Resolve<IList<BaseSiteHandler>>();
+            SettingsDialog.DataContext = App.Container.Resolve<SettingsViewModel>();
             DataContext = _viewModel;
 
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
@@ -153,6 +155,11 @@ namespace Stratus.Views
             EnterFullScreen();
         }
 
+        private async void Settings_OnClick(object sender, RoutedEventArgs e)
+        {
+            await SettingsDialog.ShowAsync();
+        }
+
         #endregion
 
         #region View Modes
@@ -194,5 +201,6 @@ namespace Stratus.Views
         #endregion
 
 
+        
     }
 }

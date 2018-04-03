@@ -10,10 +10,10 @@ namespace Stratus.Extensions
 {
     public class Document
     {
-        private readonly WindowViewModel _viewModel;
+        private readonly MainViewModel _viewModel;
         private readonly WebView _webView;
 
-        internal Document(WindowViewModel viewModel, WebView webView)
+        internal Document(MainViewModel viewModel, WebView webView)
         {
             _viewModel = viewModel;
             _webView = webView;
