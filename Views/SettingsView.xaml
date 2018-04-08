@@ -106,14 +106,14 @@
             </Border>
         </ControlTemplate>
     </ContentDialog.Template>
-    <ScrollViewer Margin="20,20,20,0">
+    <ScrollViewer Margin="20,20,20,0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
         <StackPanel>
             <TextBlock Text="Plugins" Margin="0,5"/>
             <Border BorderThickness="1" BorderBrush="Black" Margin="0">
-                <ListView ItemsSource="{Binding Extensions}" Margin="0" SelectionMode="None">
-                    <ListView.ItemTemplate>
+                <ItemsControl ItemsSource="{Binding Extensions}" Margin="0">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="-7,0,0,0">
+                            <Grid Margin="5" HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
@@ -123,14 +123,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Image Margin="0,0,5,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="40" Height="40" Source="{Binding Icon}"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" TextWrapping="WrapWholeWords" FontSize="12" Foreground="#202020"/>
-                                <ToggleSwitch Margin="10,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" IsOn="{Binding Enabled}"/>
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="40" Height="40" Source="{Binding Icon}"/>
+                                <TextBlock Margin="5,0" Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+                                <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" Text="{Binding Description}" TextWrapping="WrapWholeWords" FontSize="12" Foreground="#202020"/>
+                                <ToggleSwitch Margin="5,0" MinWidth="0" HorizontalAlignment="Right" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" IsOn="{Binding Enabled}"/>
                             </Grid>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <TextBlock VerticalAlignment="Center" Text="Allow collection of anonymous usage data and crash reports."/>
