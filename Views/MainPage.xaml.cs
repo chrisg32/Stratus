@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -30,8 +31,8 @@ namespace Stratus.Views
         public MainPage()
         {
             InitializeComponent();
-
             _viewModel = App.Container.Resolve<MainViewModel>();
+            _viewModel.ShowHtml = html => Task.Run(() => WebView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => WebView.NavigateToString(html)));
             _extensions = App.Container.Resolve<IList<BaseSiteExtension>>();
             SettingsDialog.DataContext = App.Container.Resolve<SettingsViewModel>();
             DataContext = _viewModel;
@@ -141,17 +142,33 @@ namespace Stratus.Views
         }
 
 
-        private void Pip_Click(object sender, RoutedEventArgs e)
+        private async void Pip_Click(object sender, RoutedEventArgs e)
         {
             var extension = _extensions.FirstOrDefault(ext => ext.Filter(_document.Url));
-            extension?.OnPictureInPicture(_document);
+            try
+            {
+                var task = extension?.OnPictureInPicture(_document);
+                if (task != null) await task;
+            }
+            catch (Exception ex)
+            {
+                //TODO log exception
+            }
             TogglePictureInPicture();
         }
 
-        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        private async void FullScreen_Click(object sender, RoutedEventArgs e)
         {
             var extension = _extensions.FirstOrDefault(ext => ext.Filter(_document.Url));
-            extension?.OnFullScreen(_document);
+            try
+            {
+                var task = extension?.OnFullScreen(_document);
+                if (task != null) await task;
+            }
+            catch (Exception ex)
+            {
+                //TODO log exception
+            }
             EnterFullScreen();
         }
 

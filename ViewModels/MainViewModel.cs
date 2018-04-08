@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Stratus.ViewModels
 {
+
     class MainViewModel : ViewModelBase
     {
         private Uri _source = new Uri("https://eff.org");
@@ -15,6 +16,7 @@ namespace Stratus.ViewModels
         private readonly Stack<Uri> _backStack = new Stack<Uri>();
         private readonly Stack<Uri> _forwardStack = new Stack<Uri>();
         private Uri _currentUri;
+        public Action<string> ShowHtml { get; set; }
 
         #region Commands
 
@@ -87,6 +89,7 @@ namespace Stratus.ViewModels
 
         public void OnNavigate(Uri uri)
         {
+            if(uri == null) return;
             if (_currentUri != null)
             {
                 _backStack.Push(_currentUri);
@@ -96,6 +99,5 @@ namespace Stratus.ViewModels
             _currentUri = uri;
             Address = uri.ToString();
         }
-
     }
 }

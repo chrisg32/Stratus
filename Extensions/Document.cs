@@ -29,6 +29,11 @@ namespace Stratus.Extensions
             }
         }
 
+        public void ShowHtml(string html)
+        {
+            _viewModel.ShowHtml(html);
+        }
+
         public void Back()
         {
             if(_viewModel.BackCommand.CanExecute())
