@@ -11,6 +11,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Prism.Commands;
 using Stratus.Extensions;
@@ -84,7 +85,7 @@ namespace Stratus.Views
 
             jl.Items.Clear();
 
-            var pip = JumpListItem.CreateWithArguments("pip", "Pip");
+            var pip = JumpListItem.CreateWithArguments("pip", "PIP");
             pip.Description = "Toggle PIP mode.";
             pip.GroupName = viewModesGroup;
             //TODO create assets for icons and set logo url
@@ -185,8 +186,8 @@ namespace Stratus.Views
         {
             if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
             {
-                ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-                compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
+                var compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
+                //compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
                 var result = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
                 if (result)
                 {
@@ -218,6 +219,24 @@ namespace Stratus.Views
         #endregion
 
 
-        
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (!string.IsNullOrEmpty(App.LaunchParam))
+            {
+                HandleJump(App.LaunchParam);
+                App.LaunchParam = null;
+            }
+        }
+
+        public void HandleJump(string jumpArg)
+        {
+            switch (jumpArg)
+            {
+                case "pip":
+                    TogglePictureInPicture();
+                    break;
+            }
+        }
     }
 }

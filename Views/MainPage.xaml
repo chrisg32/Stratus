@@ -47,24 +47,19 @@
                 <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-<!--                        <MenuFlyoutItem Text="Top Most">-->
-<!--                            <MenuFlyoutItem.Icon>-->
-<!--                                <FontIcon Glyph="&#xE11C;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>-->
-<!--                            </MenuFlyoutItem.Icon>-->
-<!--                        </MenuFlyoutItem>-->
                         <MenuFlyoutItem Text="PIP" Click="Pip_Click">
                             <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE173;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                                <BitmapIcon UriSource="ms-appx:///Assets/pip_icon_30.png"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Text="Full Screen" Click="FullScreen_Click">
                             <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE740;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                                <SymbolIcon Symbol="FullScreen"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Text="Settings" Click="Settings_OnClick">
                             <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE115;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                                <SymbolIcon Symbol="Setting"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                     </MenuFlyout>
@@ -79,6 +74,14 @@
         </Grid>
     </Grid>
 </Page>
+
+
+
+
+
+
+
+
 
 
 
