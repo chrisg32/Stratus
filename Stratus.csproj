@@ -100,13 +100,12 @@
     <Compile Include="Extensions\SiteExtensions\HuluSiteExtension.cs" />
     <Compile Include="Extensions\SiteExtensions\YouTubeSiteExtension.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="Util\SafeDictionaryCustomCreationConverter.cs" />
     <Compile Include="ViewModels\ExtensionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Enums\ChromeMode.cs" />
-    <Compile Include="Models\Enums\PipMode.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

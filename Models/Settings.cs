@@ -1,10 +1,12 @@
-﻿using Stratus.Models.Enums;
+﻿using System.Collections.Generic;
+using CG.Commons.Collections;
 
 namespace Stratus.Models
 {
     public class Settings
     {
-        public ChromeMode ChromeMode { get; set; }
-        public PipMode PipMode { get; set; }
+        public string HomePage { get; set; }
+        public bool CrashReporting { get; set; } = false;
+        public IDictionary<string, bool> ExtensionsEnabled { get; set; } = new SafeDictionary<string, bool>(true);
     }
 }

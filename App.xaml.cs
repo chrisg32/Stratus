@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -8,6 +9,7 @@ using Autofac;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Stratus.Services;
 
 namespace Stratus
 {
@@ -34,6 +36,10 @@ namespace Stratus
             var geographicRegion = new Windows.Globalization.GeographicRegion(region);
             AppCenter.SetCountryCode(geographicRegion.CodeTwoLetter);
 
+            var settingsService = Container.Resolve<SettingsService>();
+            Task.Run(() => settingsService.Load()).Wait();
+
+            //TODO turn off/on application insights here based on settings
         }
 
         public static IContainer Container { get; private set; }

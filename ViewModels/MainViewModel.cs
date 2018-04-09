@@ -4,13 +4,14 @@ using System.Linq;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using System.Text.RegularExpressions;
+using Stratus.Services;
 
 namespace Stratus.ViewModels
 {
 
     class MainViewModel : ViewModelBase
     {
-        private Uri _source = new Uri("https://eff.org");
+        private Uri _source;
         private string _address;
 
         private readonly Stack<Uri> _backStack = new Stack<Uri>();
@@ -42,11 +43,15 @@ namespace Stratus.ViewModels
             private set => SetProperty(ref _address, value);
         }
 
-        public MainViewModel()
+        public MainViewModel(SettingsService settingsService)
         {
             NavigateCommand = new DelegateCommand<string>(ExecuteNavigate);
             BackCommand = new DelegateCommand(ExecuteBack, () => _backStack.Any());
             ForwardCommand = new DelegateCommand(ExecuteForward, () => _forwardStack.Any());
+            var homepage = string.IsNullOrWhiteSpace(settingsService.CurrentSettings.HomePage)
+                ? "https://eff.org"
+                : settingsService.CurrentSettings.HomePage;
+            _source = new Uri(homepage);
         }
 
         #region Command Implementation
