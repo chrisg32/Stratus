@@ -73,6 +73,7 @@ namespace Stratus.ViewModels
 
         private void ExecuteNavigate(string url)
         {
+            if (url == null) return;
             if (!Regex.IsMatch(url, @"^(?:https?:\/\/)"))
             {
                 url = "https://" + url;

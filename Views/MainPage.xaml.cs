@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +12,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
-using Prism.Commands;
 using Stratus.Extensions;
 using Stratus.ViewModels;
 
@@ -28,6 +26,8 @@ namespace Stratus.Views
         private bool _isFullScreen;
         private readonly Document _document;
         private readonly IList<BaseSiteExtension> _extensions;
+        private const string ViewModesGroup = "ViewModes";
+        private readonly ApplicationView _applicationView;
 
         public MainPage()
         {
@@ -48,6 +48,7 @@ namespace Stratus.Views
             Window.Current.SetTitleBar(SystemButtonGutter);
 
             var view = ApplicationView.GetForCurrentView();
+            _applicationView = view;
 
             view.TitleBar.BackgroundColor = Colors.Transparent;
             view.TitleBar.ForegroundColor = Colors.White;
@@ -79,20 +80,16 @@ namespace Stratus.Views
         private async void CreateJumpList()
         {
             if (!JumpList.IsSupported()) return;
-            const string viewModesGroup = "ViewModes";
+
 
             var jl = await JumpList.LoadCurrentAsync();
-
             jl.Items.Clear();
 
-            var pip = JumpListItem.CreateWithArguments("pip", "PIP");
-            pip.Description = "Toggle PIP mode.";
-            pip.GroupName = viewModesGroup;
-            //TODO create assets for icons and set logo url
-            //pip.Logo = new Uri("ms-appx:///images/your-images.png");
+            if (jl.Items.All(i => i.GroupName != ViewModesGroup))
+            {
+                CreateViewModesJumpListItems(jl);
+            }
 
-            
-            jl.Items.Add(pip);
             try
             {
                 await jl.SaveAsync();
@@ -101,6 +98,23 @@ namespace Stratus.Views
             {
                 //TODO log exception
             }
+        }
+
+        private void CreateViewModesJumpListItems(JumpList jl)
+        {
+            var pip = JumpListItem.CreateWithArguments("pip", "PIP");
+            pip.Description = "Toggle PIP mode.";
+            pip.GroupName = ViewModesGroup;
+            pip.Logo = new Uri("ms-appx:///Assets/pip_icon_80.png");
+            jl.Items.Add(pip);
+
+            var fs = JumpListItem.CreateWithArguments("fullscreen", "Full Screen");
+            fs.Description = "Toggle Full Screen mode.";
+            fs.GroupName = ViewModesGroup;
+            fs.Logo = new Uri("ms-appx:///Assets/fullscreen_icon_80.png");
+            jl.Items.Add(fs);
+
+
         }
 
         private void View_VisibleBoundsChanged(ApplicationView sender, object args)
@@ -155,7 +169,7 @@ namespace Stratus.Views
             {
                 //TODO log exception
             }
-            TogglePictureInPicture();
+            await TogglePip();
         }
 
         private async void FullScreen_Click(object sender, RoutedEventArgs e)
@@ -182,13 +196,14 @@ namespace Stratus.Views
 
         #region View Modes
 
-        private async void TogglePictureInPicture()
+        private bool IsPip => _applicationView.ViewMode == ApplicationViewMode.CompactOverlay;
+
+        private async Task EnterPip()
         {
-            if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
+            if (_applicationView.IsViewModeSupported(ApplicationViewMode.CompactOverlay))
             {
                 var compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-                //compactOptions.CustomSize = new Windows.Foundation.Size(320, 200);
-                var result = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+                var result = await _applicationView.TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
                 if (result)
                 {
                     HideTitleBar();
@@ -196,13 +211,63 @@ namespace Stratus.Views
             }
         }
 
+        private async Task ExitPip()
+        {
+            if (_applicationView.IsViewModeSupported(ApplicationViewMode.CompactOverlay))
+            {
+                var result = await _applicationView.TryEnterViewModeAsync(ApplicationViewMode.Default);
+                if (result)
+                {
+                    ShowTitleBar();
+                }
+            }
+        }
+
+        private async Task TogglePip()
+        {
+            if (_applicationView.IsFullScreenMode)
+            {
+                ExitFullScreen();
+            }
+            if (IsPip)
+            {
+                await ExitPip();
+            }
+            else
+            {
+                await EnterPip();
+            }
+        }
+
+        private void ExitFullScreen()
+        {
+            _applicationView.ExitFullScreenMode();
+            _isFullScreen = false;
+            ShowTitleBar();
+        }
+
         private void EnterFullScreen()
         {
-            var view = ApplicationView.GetForCurrentView();
-            if (view.TryEnterFullScreenMode())
+            if (_applicationView.TryEnterFullScreenMode())
             {
                 _isFullScreen = true;
                 HideTitleBar();
+            }
+        }
+
+        private async Task ToggleFullscreen()
+        {
+            if (IsPip)
+            {
+                await ExitPip();
+            }
+            if (_applicationView.IsFullScreenMode)
+            {
+                ExitFullScreen();
+            }
+            else
+            {
+                EnterFullScreen();
             }
         }
 
@@ -219,22 +284,25 @@ namespace Stratus.Views
         #endregion
 
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (!string.IsNullOrEmpty(App.LaunchParam))
             {
-                HandleJump(App.LaunchParam);
+                await HandleJump(App.LaunchParam);
                 App.LaunchParam = null;
             }
         }
 
-        public void HandleJump(string jumpArg)
+        public async Task HandleJump(string jumpArg)
         {
             switch (jumpArg)
             {
                 case "pip":
-                    TogglePictureInPicture();
+                    await TogglePip();
+                    break;
+                case "fullscreen":
+                    await ToggleFullscreen();
                     break;
             }
         }
