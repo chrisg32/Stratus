@@ -9,7 +9,7 @@ namespace Stratus.Extensions.SiteExtensions
     {
         public override bool Filter(string url)
         {
-            return Regex.IsMatch(url, @"^(?:https?:\/\/)?(?:www\.)?hulu\.com\/watch\/(\d{3,})#?.*?$");
+            return Regex.IsMatch(url, @"^(?:https?:\/\/)?(?:www\.)?hulu\.com\/watch\/(\d{3,})#?.*?$", RegexOptions.IgnoreCase);
         }
 
         public override async Task OnPictureInPicture(Document document)

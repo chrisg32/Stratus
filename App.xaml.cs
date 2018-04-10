@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -8,6 +9,7 @@ using Autofac;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Stratus.Services;
 
 namespace Stratus
 {
@@ -34,9 +36,14 @@ namespace Stratus
             var geographicRegion = new Windows.Globalization.GeographicRegion(region);
             AppCenter.SetCountryCode(geographicRegion.CodeTwoLetter);
 
+            var settingsService = Container.Resolve<SettingsService>();
+            Task.Run(() => settingsService.Load()).Wait();
+
+            //TODO turn off/on application insights here based on settings
         }
 
         public static IContainer Container { get; private set; }
+        public static string LaunchParam { get; set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -45,6 +52,7 @@ namespace Stratus
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            LaunchParam = e?.Arguments;
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -73,6 +81,11 @@ namespace Stratus
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     rootFrame.Navigate(typeof(Views.MainPage), e.Arguments);
+                }
+                else
+                {
+                    var mainPage = rootFrame.Content as Views.MainPage;
+                    mainPage?.HandleJump(e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

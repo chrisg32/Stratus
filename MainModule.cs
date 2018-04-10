@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Stratus.Extensions;
+using Stratus.Services;
 
 namespace Stratus
 {
@@ -16,6 +17,9 @@ namespace Stratus
 
             //register view models
             builder.RegisterAssemblyTypes(assembly).Where(t => t.Namespace == "Stratus.ViewModels").AsSelf();
+
+            //register settings service
+            builder.RegisterType<SettingsService>().SingleInstance().AsSelf();
         }
     }
 }

@@ -100,13 +100,12 @@
     <Compile Include="Extensions\SiteExtensions\HuluSiteExtension.cs" />
     <Compile Include="Extensions\SiteExtensions\YouTubeSiteExtension.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="Util\SafeDictionaryCustomCreationConverter.cs" />
     <Compile Include="ViewModels\ExtensionViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Enums\ChromeMode.cs" />
-    <Compile Include="Models\Enums\PipMode.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,11 +127,14 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\fullscreen_icon_80.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\pip_icon_30.png" />
+    <Content Include="Assets\pip_icon_80.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
