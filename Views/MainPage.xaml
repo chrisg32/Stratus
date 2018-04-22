@@ -42,7 +42,7 @@
                 </Button>
             </Grid>
             <Button Grid.Column="3" x:Name="MagicButton" util:Ext.Cursor="Hand" VerticalAlignment="Stretch" Click="MagicButton_Click">
-                <FontIcon Glyph="&#xE753;" FontFamily="Segoe MDL2 Assets" FontWeight="ExtraLight" FontSize="15"/>
+                <BitmapIcon UriSource="ms-appx:///Assets/icon_30.png" Foreground="White"/>
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="PIP" Click="Pip_Click">
