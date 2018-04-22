@@ -74,7 +74,32 @@ namespace Stratus.Views
 
             CreateJumpList();
 
+            WebView.PermissionRequested += WebView_PermissionRequested;
+
             _document = new Document(_viewModel, WebView);
+        }
+
+        private async void WebView_PermissionRequested(WebView sender, WebViewPermissionRequestedEventArgs args)
+        {
+            if (args.PermissionRequest.PermissionType == WebViewPermissionType.Geolocation)
+            {
+                var locationPromptDialog = new ContentDialog
+                {
+                    Title = $"Let {args.PermissionRequest.Uri} use your location?",
+                    CloseButtonText = "Block",
+                    PrimaryButtonText = "Allow"
+                };
+
+                var result = await locationPromptDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    args.PermissionRequest.Allow();
+                }
+                else
+                {
+                    args.PermissionRequest.Deny();
+                }
+            }
         }
 
         private async void CreateJumpList()
