@@ -33,9 +33,7 @@
             </Button>
             <Grid Grid.Column="2" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <!--Tab List View-->
                     <ColumnDefinition Width="*"/>
-                    <!--New Tab Button -->
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="AddressBar" IsSpellCheckEnabled="False" KeyDown="AddressBar_KeyDown" Text="{Binding Address}"/>
@@ -70,6 +68,16 @@
         <Grid Grid.Row="1">
             <WebView x:Name="WebView" Source="{Binding Source}"
                      ContentLoading="WebView_ContentLoading"/>
+            <Grid x:Name="PipTitleBar" VerticalAlignment="Top" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="PipGrid" Background="Transparent" Grid.Column="0"/>
+                <Button Grid.Column="1" x:Name="PipButton" HorizontalAlignment="Right" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" Click="Pip_Click">
+                    <SymbolIcon Symbol="BackToWindow"/>
+                </Button>
+            </Grid>
             <views:SettingsView  x:Name="SettingsDialog"/>
         </Grid>
     </Grid>

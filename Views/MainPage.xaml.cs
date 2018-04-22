@@ -10,6 +10,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Stratus.Extensions;
@@ -158,6 +159,7 @@ namespace Stratus.Views
             TitleBar.Height = sender.Height;
             SystemButtonGutter.Width = sender.SystemOverlayRightInset;
             MagicButton.Width = sender.SystemOverlayRightInset / 4;
+            PipButton.Margin = new Thickness(0, 0, sender.SystemOverlayRightInset, 0);
         }
 
         private void MagicButton_Click(object sender, RoutedEventArgs e)
@@ -231,7 +233,7 @@ namespace Stratus.Views
                 var result = await _applicationView.TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
                 if (result)
                 {
-                    HideTitleBar();
+                    HideTitleBar(true);
                 }
             }
         }
@@ -276,7 +278,7 @@ namespace Stratus.Views
             if (_applicationView.TryEnterFullScreenMode())
             {
                 _isFullScreen = true;
-                HideTitleBar();
+                HideTitleBar(false);
             }
         }
 
@@ -296,14 +298,19 @@ namespace Stratus.Views
             }
         }
 
-        private void HideTitleBar()
+        private void HideTitleBar(bool grip)
         {
+            PipTitleBar.Visibility = grip ? Visibility.Visible : Visibility.Collapsed;
+            PipTitleBar.Height = TitleBar.ActualHeight;
             TitleBar.Visibility = Visibility.Collapsed;
+            Window.Current.SetTitleBar(PipGrid);
         }
 
         private void ShowTitleBar()
         {
             TitleBar.Visibility = Visibility.Visible;
+            PipTitleBar.Visibility = Visibility.Collapsed;
+            Window.Current.SetTitleBar(SystemButtonGutter);
         }
 
         #endregion
@@ -331,5 +338,6 @@ namespace Stratus.Views
                     break;
             }
         }
+
     }
 }
