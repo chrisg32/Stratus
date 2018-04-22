@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="a3135edb-6014-442f-9b95-6960bed3d001" Publisher="CN=chris" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="a3135edb-6014-442f-9b95-6960bed3d001" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="15650CG.IO.StratusBrowser" Publisher="CN=999BEC5A-3638-4A0D-8D4B-E7CBEA28E113" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="53e3e710-b136-4f25-81ba-cbe401023bdf" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Stratus</DisplayName>
-    <PublisherDisplayName>chris</PublisherDisplayName>
+    <DisplayName>Stratus Browser</DisplayName>
+    <PublisherDisplayName>Chris Gonzales</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Stratus.App">
-      <uap:VisualElements DisplayName="Stratus" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Stratus" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Stratus Browser" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Stratus" BackgroundColor="transparent">
         <uap:LockScreen Notification="badge" BadgeLogo="Assets\BadgeLogo.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
