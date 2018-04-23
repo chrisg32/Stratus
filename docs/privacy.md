@@ -1,7 +1,7 @@
-# Privacy Policy
+### Privacy Policy
 Effective Date:  April 22, 2018
 
-## tldr;
+#### tldr;
 
 We believe in a free, open, and secure web and that belief as our guide while developing Stratus.
 
@@ -9,7 +9,7 @@ Stratus and the Stratus Website does not directly collect any user information; 
 
 Since we do not collect data there is no information to share.
 
-## Information Collection, Use, and Sharing
+#### Information Collection, Use, and Sharing
 
 No information is collected by the website except that is collected by our hosting service, GitHub pages. For more information on what information see the [GitHub privacy policy.](https://help.github.com/articles/github-privacy-statement/)
 
@@ -19,6 +19,6 @@ Stratus does not collect any data directly. No information is ever shared and an
 
 Lastly, Stratus is build on top of the Microsoft edge browser using the Microsoft UWP application framework. Each application's terms of service and/or privacy policy is still applicable.
  
-## Compliance
+#### Compliance
 
 Per the laws of applicable legal juridictions, we will comply with law enforcement, however; since we don't collect any user information their is nothing to share.
