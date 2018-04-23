@@ -73,33 +73,29 @@ h3, h4{
     font-size: 3.2em;
 }
 
+@media screen and (max-width: 600px) {
+    .home .features .feature-list .feature {
+        width: 100%;
+        margin: 0 auto
+    }
+}
+
 .services:after{
-    content: '';
+    content: 'my favorite site?';
     animation-name: head;
-    animation-duration: 20s;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
 }
 
 @keyframes head {
-    0% { opacity:0; }
-    5% { opacity:1; content: "Hulu?\""}
-    10% { opacity:0;}
-    15% { opacity:1; content: "YouTube?\""}
-    20% { opacity:0;}
-    25% { opacity:1; content: "Amazon Video?\""}
-    30% { opacity:0;}
-    35% { opacity:1; content: "Plex?\""}
-    40% { opacity:0;}
-    45% { opacity:1; content: "Channel 9?\""}
-    40% { opacity:0;}
-    55% { opacity:1; content: "Pluralsight?\""}
-    60% { opacity:0;}
-    65% { opacity:1; content: "Golf Channel?\""}
-    70% { opacity:0;}
-    75% { opacity:1; content: "Vimeo?\""}
-    80% { opacity:0;}
-    85% { opacity:1; content: "my favorite site?\""}
-    90% { opacity:0;}
-    95% { opacity:1; content: "Netflix?\""}
-    100% { opacity:0;}
+    10% { content: 'Hulu?'}
+    20% { content: 'YouTube?' }
+    30% { content: 'Netflix?'}
+    40% { content: 'Amazon Video?'}
+    50% { content: 'Plex?'}
+    60% { content: 'Channel 9?'}
+    70% { content: 'Pluralsight?'}
+    80% { content: 'Vimeo?'}
+    90% { content: 'Sling?'}
+    100% { content: 'my favorite site?'}
 }
