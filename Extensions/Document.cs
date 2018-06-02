@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Stratus.ViewModels;
@@ -48,6 +45,11 @@ namespace Stratus.Extensions
             {
                 _viewModel.ForwardCommand.Execute();
             }
+        }
+
+        public async Task<string> RunJavascript(string script)
+        {
+            return await _webView.InvokeScriptAsync("eval", new[] {script});
         }
 
         public async Task<string> GetHtml()
