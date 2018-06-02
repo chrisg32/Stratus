@@ -13,6 +13,7 @@ namespace Stratus.ViewModels
     {
         private Uri _source;
         private string _address;
+        private const string DefaultHomePage = "https://eff.org";
 
         private readonly Stack<Uri> _backStack = new Stack<Uri>();
         private readonly Stack<Uri> _forwardStack = new Stack<Uri>();
@@ -49,9 +50,9 @@ namespace Stratus.ViewModels
             BackCommand = new DelegateCommand(ExecuteBack, () => _backStack.Any());
             ForwardCommand = new DelegateCommand(ExecuteForward, () => _forwardStack.Any());
             var homepage = string.IsNullOrWhiteSpace(settingsService.CurrentSettings.HomePage)
-                ? "https://eff.org"
-                : settingsService.CurrentSettings.HomePage;
-            _source = new Uri(homepage);
+                ? DefaultHomePage
+                : CleanUrl(settingsService.CurrentSettings.HomePage);
+            _source = Uri.TryCreate(homepage, UriKind.RelativeOrAbsolute, out var uri) ? uri : new Uri(DefaultHomePage);
         }
 
         #region Command Implementation
@@ -76,13 +77,21 @@ namespace Stratus.ViewModels
             ForwardCommand.RaiseCanExecuteChanged();
         }
 
-        private void ExecuteNavigate(string url)
+        private string CleanUrl(string url)
         {
-            if (url == null) return;
+            if (string.IsNullOrWhiteSpace(url)) return null;
+            url = url.Trim();
             if (!Regex.IsMatch(url, @"^(?:https?:\/\/)"))
             {
                 url = "https://" + url;
             }
+            return url;
+        }
+
+        private void ExecuteNavigate(string url)
+        {
+            if (url == null) return;
+            url = CleanUrl(url);
             if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out var uri))
             {
                 Source = uri;
