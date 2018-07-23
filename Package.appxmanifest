@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="15650CG.IO.StratusBrowser" Publisher="CN=999BEC5A-3638-4A0D-8D4B-E7CBEA28E113" Version="1.0.0.0" />
+  <Identity Name="15650CG.IO.StratusBrowser" Publisher="CN=999BEC5A-3638-4A0D-8D4B-E7CBEA28E113" Version="1.1.1.0" />
   <mp:PhoneIdentity PhoneProductId="53e3e710-b136-4f25-81ba-cbe401023bdf" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Stratus Browser</DisplayName>
