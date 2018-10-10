@@ -12,7 +12,6 @@ namespace Stratus.ViewModels
     {
         private readonly SettingsService _settingsService;
         private string _homePage;
-        private bool _crashReporting;
         public ObservableCollection<ExtensionViewModel> Extensions { get; } = new ObservableCollection<ExtensionViewModel>();
 
         public SettingsViewModel(IList<BaseSiteExtension> extensions, SettingsService settingsService)
@@ -21,7 +20,6 @@ namespace Stratus.ViewModels
             var extensionViewModels = extensions.Select(e => new ExtensionViewModel(e, settingsService));
             Extensions.AddRange(extensionViewModels);
             _homePage = _settingsService.CurrentSettings.HomePage;
-            _crashReporting = _settingsService.CurrentSettings.CrashReporting;
         }
 
         public string HomePage
@@ -31,17 +29,6 @@ namespace Stratus.ViewModels
             {
                 SetProperty(ref _homePage, value);
                 _settingsService.CurrentSettings.HomePage = value;
-                _settingsService.Save(_settingsService.CurrentSettings);
-            }
-        }
-
-        public bool CrashReporting
-        {
-            get => _crashReporting;
-            set
-            {
-                SetProperty(ref _crashReporting, value);
-                _settingsService.CurrentSettings.CrashReporting = value;
                 _settingsService.Save(_settingsService.CurrentSettings);
             }
         }
